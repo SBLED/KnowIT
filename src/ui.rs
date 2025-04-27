@@ -11,6 +11,7 @@ pub struct QuizUI {
     pub start_time: Option<std::time::Instant>,
     pub paused_duration: std::time::Duration,
     pub current_answer: String,
+    pub ui_scale: f32,
 }
 
 #[derive(Debug)]
@@ -33,6 +34,7 @@ impl Default for QuizUI {
             start_time: None,
             paused_duration: std::time::Duration::ZERO,
             current_answer: String::new(),
+            ui_scale: 1.0,
         }
     }
 }
@@ -122,6 +124,15 @@ impl QuizUI {
 
         ui.checkbox(&mut self.allow_going_back, "Allow going back to previous questions");
         ui.checkbox(&mut self.shuffle_questions, "Shuffle questions");
+
+        ui.add_space(10.0);
+        ui.label("UI Scale:");
+        ui.add(
+            egui::Slider::new(&mut self.ui_scale, 0.7..=2.0)
+                .clamp_to_range(true)
+                .show_value(true)
+                .text("Scale")
+        );
     }
 
     pub fn show_quiz_summary(&mut self, ui: &mut Ui, quiz: &Quiz) -> bool {

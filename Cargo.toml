@@ -13,3 +13,6 @@ chrono = "0.4"
 rfd = "0.11"
 rand = "0.8"
 winapi = { version = "0.3.9", features = ["winuser", "windef"] }
+log = "0.4"
+simplelog = "0.12"
+dirs = "5"
